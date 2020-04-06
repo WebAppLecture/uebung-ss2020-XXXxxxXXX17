@@ -25,21 +25,25 @@ export class MyMath {
 
     add(value) {
         this.value+=value;
+        return this;
     }
 
     subtract(value) {
         this.value-=value;
+        return this;
     }
 
     multiply(value) {
         this.value*=value;
+        return this;
     }
 
     divide(value) {
         this.value/=value;
-        if(value == 0){
+        if(value === 0){
             this.value = value;
         }
+        return this;
     }
 
     pow(value) {
@@ -49,9 +53,17 @@ export class MyMath {
             result*=this.value;
         }
         this.value = result;
+        return this;
     }
 
     faculty() {
-        
+        let return_new = this.value;
+        if(this.value % 1 === 0){
+            for(let i = 1; i < this.value; i++){
+                return_new *= (this.value - i); 
+            }
+        }
+        this.value = return_new;
+        return this;
     }
 }
