@@ -6,18 +6,25 @@ export class Calculator {
         this.numPad = numpad;
         this.outputCalculation = outputCalculation;
         this.outputSolution = outputSolution;
-        this.setupNumPad;
+        this.setupNumPad();
     }
 
     setupNumPad() { 
-        this.numpad.children.array.forEach(element => {
-            element.addEventListener("click", this.onButtonClick.bind(this.element.innerText));
-        });
+        let numpadLength = this.numPad.children.length;
+        console.log(numpadLength);
+        for(let i = 0; i < numpadLength; i++){
+            let number = this.numPad.children[i];
+            let numberInnerText = number.innerText;
+                
+            if(numberInnerText !== ""){
+                number.addEventListener("click", this.onButtonClick.bind(this, numberInnerText));
+            }
+        }
     }
 
     onButtonClick(symbol) {
-        symbol.printSolution(symbol.innerText);
-        console.log(this);
+        this.printSolution(symbol);
+        console.log(symbol);
     }
 
     print(string) {
